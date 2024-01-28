@@ -1,41 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Emgu.CV;
+using Emgu.CV.CvEnum;
 
 namespace ImgProc.Classes
 {
 	public static class FilterMethods
 	{
-		public static bool DesaturateBitmap(Bitmap bitmap)
+		/// <summary>
+		/// Desaturates a given Mat reference.
+		/// </summary>
+		/// <param name="image">The Mat to desaturate.</param>
+		public static void Desaturate(ref Mat image)
 		{
-			if (bitmap == null) return false;
-
-			Color pColor = Color.Black;
-			Vector3 rgbValues; // Holds an X, Y, and Z
-
-			for (int i = 0; i < bitmap.Width; i++)
+			if (image == null)
 			{
-				for (int j = 0; j < bitmap.Height; j++)
-				{
-					pColor = bitmap.GetPixel(i, j);
-					rgbValues.X = pColor.R;
-					rgbValues.Y = pColor.G;
-					rgbValues.Z = pColor.B;
-
-					int gray = (byte)(0.299 * rgbValues.X * 0.587 * rgbValues.Y * 0.114 * rgbValues.Z);
-
-					rgbValues.X = gray;
-					rgbValues.Y = gray;
-					rgbValues.Z = gray;
-
-					bitmap.SetPixel(i, j, Color.FromArgb((int)rgbValues.X, (int)rgbValues.Y, (int)rgbValues.Z));
-				}
+				Console.WriteLine($"{nameof(Desaturate)}(): Mat is null, please provide a valid Mat.");
+				return;
 			}
 
-			return true;
+			// Convert the image to grayscale
+			CvInvoke.CvtColor(image, image, ColorConversion.Bgr2Gray);
+		}
+
+		/// <summary>
+		/// Finds and draws detected edges found in the Mat reference
+		/// </summary>
+		/// <param name="image">The Mat to find edges in.</param>
+		public static void EdgeDetect(ref Mat image)
+		{
+			if (image == null)
+			{
+				Console.WriteLine($"{nameof(EdgeDetect)}(): Mat is null, please provide a valid Mat.");
+				return;
+			}
+
+			// Apply Canny edge detection
+			Mat edges = new Mat();
+			CvInvoke.Canny(image, edges, 100, 200);
+			image = edges;
 		}
 	}
 }

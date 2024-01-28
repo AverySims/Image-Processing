@@ -29,9 +29,11 @@
 		private void InitializeComponent()
 		{
 			btnLoadImg = new Button();
-			btnApplyFilter = new Button();
+			btnDesaturate = new Button();
 			imgOriginal = new PictureBox();
 			imgModified = new PictureBox();
+			btnSaveImg = new Button();
+			btnEdgeDetect = new Button();
 			((System.ComponentModel.ISupportInitialize)imgOriginal).BeginInit();
 			((System.ComponentModel.ISupportInitialize)imgModified).BeginInit();
 			SuspendLayout();
@@ -47,16 +49,17 @@
 			btnLoadImg.UseVisualStyleBackColor = true;
 			btnLoadImg.Click += LoadImage_Click;
 			// 
-			// btnApplyFilter
+			// btnDesaturate
 			// 
-			btnApplyFilter.Font = new Font("Segoe UI", 13F, FontStyle.Bold, GraphicsUnit.Point);
-			btnApplyFilter.Location = new Point(471, 316);
-			btnApplyFilter.Name = "btnApplyFilter";
-			btnApplyFilter.Size = new Size(256, 39);
-			btnApplyFilter.TabIndex = 1;
-			btnApplyFilter.Text = "Apply Desaturation Filter";
-			btnApplyFilter.UseVisualStyleBackColor = true;
-			btnApplyFilter.Click += ApplyFilter_Click;
+			btnDesaturate.AccessibleName = "desaturate";
+			btnDesaturate.Font = new Font("Segoe UI", 13F, FontStyle.Bold, GraphicsUnit.Point);
+			btnDesaturate.Location = new Point(471, 316);
+			btnDesaturate.Name = "btnDesaturate";
+			btnDesaturate.Size = new Size(256, 39);
+			btnDesaturate.TabIndex = 1;
+			btnDesaturate.Text = "Apply Desaturation Filter";
+			btnDesaturate.UseVisualStyleBackColor = true;
+			btnDesaturate.Click += ApplyFilter_Click;
 			// 
 			// imgOriginal
 			// 
@@ -64,6 +67,7 @@
 			imgOriginal.Location = new Point(75, 54);
 			imgOriginal.Name = "imgOriginal";
 			imgOriginal.Size = new Size(256, 256);
+			imgOriginal.SizeMode = PictureBoxSizeMode.Zoom;
 			imgOriginal.TabIndex = 2;
 			imgOriginal.TabStop = false;
 			// 
@@ -73,18 +77,45 @@
 			imgModified.Location = new Point(471, 54);
 			imgModified.Name = "imgModified";
 			imgModified.Size = new Size(256, 256);
+			imgModified.SizeMode = PictureBoxSizeMode.Zoom;
 			imgModified.TabIndex = 3;
 			imgModified.TabStop = false;
+			// 
+			// btnSaveImg
+			// 
+			btnSaveImg.Location = new Point(713, 12);
+			btnSaveImg.Name = "btnSaveImg";
+			btnSaveImg.Size = new Size(75, 23);
+			btnSaveImg.TabIndex = 4;
+			btnSaveImg.Text = "Save Image";
+			btnSaveImg.UseVisualStyleBackColor = true;
+			btnSaveImg.Click += SaveImage_Clicked;
+			// 
+			// btnEdgeDetect
+			// 
+			btnEdgeDetect.AccessibleName = "edgeDetect";
+			btnEdgeDetect.Font = new Font("Segoe UI", 13F, FontStyle.Bold, GraphicsUnit.Point);
+			btnEdgeDetect.Location = new Point(471, 361);
+			btnEdgeDetect.Name = "btnEdgeDetect";
+			btnEdgeDetect.Size = new Size(256, 39);
+			btnEdgeDetect.TabIndex = 5;
+			btnEdgeDetect.Text = "Apply Edge-Detect Filter";
+			btnEdgeDetect.UseVisualStyleBackColor = true;
+			btnEdgeDetect.Click += ApplyFilter_Click;
 			// 
 			// Form1
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(800, 450);
+			Controls.Add(btnEdgeDetect);
+			Controls.Add(btnSaveImg);
 			Controls.Add(imgModified);
 			Controls.Add(imgOriginal);
-			Controls.Add(btnApplyFilter);
+			Controls.Add(btnDesaturate);
 			Controls.Add(btnLoadImg);
+			MaximumSize = new Size(816, 489);
+			MinimumSize = new Size(816, 489);
 			Name = "Form1";
 			Text = "Form1";
 			((System.ComponentModel.ISupportInitialize)imgOriginal).EndInit();
@@ -95,8 +126,10 @@
 		#endregion
 
 		private Button btnLoadImg;
-		private Button btnApplyFilter;
+		private Button btnDesaturate;
 		private PictureBox imgOriginal;
 		private PictureBox imgModified;
+		private Button btnSaveImg;
+		private Button btnEdgeDetect;
 	}
 }
